@@ -69,17 +69,20 @@ The k8s.yaml manifest implements professional DevOps patterns:
 
 Once the server is running, access the interactive **Swagger UI** at:
 
-http://localhost:<PORT>/api-docs
+👉 **[http://localhost:3000/api-docs](http://localhost:3000/api-docs)**
 
 *Note: Use the "Authorize" button and enter your API_KEY (default: moj-tajny-klucz-api-123) to test secured endpoints.*
 
-### Example Endpoints:
+### Endpoints:
 
-| Method | Endpoint      | Description               | Auth Required |
-|:-------|:--------------|:--------------------------|:-------------:|
-| GET    | /api-docs     | Swagger Documentation     | No            |
-| GET    | /tasks        | Get all tasks             | Yes           |
-| POST   | /tasks        | Create a new task         | Yes           |
+| Method | Endpoint      | Description           | Auth Required |
+|:-------|:--------------|:----------------------|:-------------:|
+| `GET`  | `/api-docs`   | Swagger Documentation | ❌ No |
+| `GET`  | `/db-test`    | Database Connection Check | ❌ No |
+| `GET`  | `/tasks`      | Get all tasks         | ✅ Yes |
+| `POST` | `/tasks`      | Create a new task     | ✅ Yes |
+| `PUT`  | `/tasks/:id`  | Update task details   | ✅ Yes |
+| `DELETE`| `/tasks/:id` | Remove a task         | ✅ Yes |
 
 ---
 
@@ -92,11 +95,15 @@ npm test
 
 ## 📂 Project Structure
 
-├── k8s.yaml            # Kubernetes Manifests
-├── docker-compose.yml   # Docker Compose Config
-├── src/
-│   ├── controllers/    # Request handling logic
-│   ├── middleware/     # Auth & Security middlewares
-│   ├── models/         # Database SQL queries
-│   ├── db.ts           # DB Connection pool
-│   └── index.ts        # Server entry point
+```text
+src/
+├── controllers/    # Request handling logic (input validation, response formatting)
+├── middleware/     # Custom middlewares (Authentication, Error handling)
+├── models/         # Database interaction (SQL queries)
+├── routes/         # Route definitions maps URLs to Controllers
+├── tests/          # Integration tests (Jest + Supertest)
+├── types.ts        # TypeScript interfaces
+├── db.ts           # Database connection pool setup
+├── app.ts          # Express app configuration
+└── index.ts        # Server entry point
+```
