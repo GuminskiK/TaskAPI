@@ -69,7 +69,7 @@ The k8s.yaml manifest implements professional DevOps patterns:
 
 Once the server is running, access the interactive **Swagger UI** at:
 
-👉 **[http://localhost:3000/api-docs](http://localhost:3000/api-docs)**
+👉 **[http://localhost:{Port}/api-docs](http://localhost:{Port}/api-docs)**
 
 *Note: Use the "Authorize" button and enter your API_KEY (default: moj-tajny-klucz-api-123) to test secured endpoints.*
 
